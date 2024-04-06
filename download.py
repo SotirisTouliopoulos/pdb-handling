@@ -23,8 +23,8 @@ class Input:
             
 
 class Download:
-    def __init__(self, input, format):
-        self.input = input
+    def __init__(self, PDBs, format):
+        self.input = PDBs
         self.format = format
         
     def ftp(self):
@@ -44,7 +44,7 @@ class Download:
             pass
 
 
-        if self.input == "biounit":
+        if self.format == "biounit":
             try:
                 path = '/pub/pdb/data/biounit/coordinates/all'
                 ftp.cwd(path)
@@ -54,15 +54,16 @@ class Download:
                 pass 
             
             try:
-                file = self.input + '.pdb1.gz'
-                ftp.retrbinary('RETR ' + file , open(file, 'wb').write)
+                for pdb in self.input:
+                    file = pdb + '.pdb1.gz'
+                    ftp.retrbinary('RETR ' + file , open(file, 'wb').write)
             except:
                 print('Failed to download this file\n')
             finally:
                 pass
 
         
-        elif self.input == "pdb":
+        elif self.format == "pdb":
             try:
                 path = '/pub/pdb/data/structures/all/pdb'
                 ftp.cwd(path)
@@ -72,8 +73,9 @@ class Download:
                 pass 
 
             try:
-                file = 'pdb' + self.input + '.ent.gz'
-                ftp.retrbinary('RETR ' + file , open(file, 'wb').write)
+                for pdb in self.input:
+                    file = 'pdb' + pdb + '.ent.gz'
+                    ftp.retrbinary('RETR ' + file , open(file, 'wb').write)
             except:
                 print('Failed to download this file\n')
             finally:
