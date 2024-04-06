@@ -1,12 +1,18 @@
 
-from download import Download, Input
+from download import Download
+from input import Input
 import sys
 
 
-input = Input( sys.argv[1] , sys.argv[2] )
+input = sys.argv[1]
+format = sys.argv[2]
+compression = sys.argv[3]
+
+
+input = Input(input)
 PDBs = input.get_input()
 
 
-structure = Download(PDBs , sys.argv[2])
-structure.ftp()
-
+structure = Download(PDBs , format, compression)
+#structure.ftp()
+structure.wget()

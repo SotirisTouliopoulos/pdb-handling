@@ -1,33 +1,19 @@
 
 import ftplib
 import sys
-
-
-class Input:
-    def __init__(self, input, format):
-        self.input = input
-        self.format = format
-        
-    def get_input(self):        
-        PDBs = []
-        if self.input[-4:] == ".txt":
-            with open(self.input) as file:
-                PDBs = []
-                for line in file:
-                    PDBs.append(line[:-1])
-            return PDBs
-
-        elif len(self.input) == 4:
-            PDBs.append(self.input)
-            return PDBs
-            
+import wget
+         
 
 class Download:
-    def __init__(self, PDBs, format):
-        self.input = PDBs
+    def __init__(self, PDBs, format, compression):
+        self.PDBs = PDBs
         self.format = format
+        self.compression = compression
         
     def ftp(self):
+        
+        print("Please note that the FTP protocol will be phased out on November 1st 2024\n")
+        
         try:
             ftp = ftplib.FTP("ftp.wwpdb.org")
         except:
@@ -54,7 +40,7 @@ class Download:
                 pass 
             
             try:
-                for pdb in self.input:
+                for pdb in self.PDBs:
                     file = pdb + '.pdb1.gz'
                     ftp.retrbinary('RETR ' + file , open(file, 'wb').write)
             except:
@@ -73,7 +59,7 @@ class Download:
                 pass 
 
             try:
-                for pdb in self.input:
+                for pdb in self.PDBs:
                     file = 'pdb' + pdb + '.ent.gz'
                     ftp.retrbinary('RETR ' + file , open(file, 'wb').write)
             except:
@@ -82,5 +68,14 @@ class Download:
                 pass
 
         ftp.quit()
-            
         
+
+    def wget(self):        
+        if self.format == "pdb":
+            try:
+                for file in self.PDBs:    
+                    url = 'https://files.rcsb.org/download/' + file + '.pdb' + self.compression
+                    wget.download(url)
+            
+            except:
+                print("Cannot download this file")
