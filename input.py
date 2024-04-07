@@ -11,7 +11,7 @@ class Input:
             with open(self.input) as file:
                 PDBs = []
                 for line in file:
-                    PDBs.append(line[:-1])
+                    PDBs.append(line[:4])
             return PDBs
 
         elif len(self.input) == 4:
