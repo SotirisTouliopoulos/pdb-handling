@@ -1,6 +1,7 @@
 
 from src.download import Download
 from src.input import Input
+from src.parse import Parse
 import sys
 import shutil
 
@@ -47,14 +48,32 @@ def download_function(argv_list):
         pass
 
 
-def parse_function():
-    pass
+def parse_function(argv_list):
+    
+    i_index = sys.argv.index('-i')
+    
+    input = sys.argv[i_index +1]
+            
+    input = Input(input)
+    PDBs = input.get_input()
+    print(PDBs)
+
+    structure = Parse(PDBs)
+    structure.coordinates()
+        
+    try:
+        shutil.rmtree("src/__pycache__")
+    except:
+        pass
+
 
 
 def call_function(flag):
     if flag == "-d":
         download_function(sys.argv)
     elif flag == "-p":
+        parse_function(sys.argv)
+    elif flag == "-h":
         pass
     
     
