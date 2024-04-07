@@ -6,7 +6,6 @@ import sys
 
 if '-d' in sys.argv:
     
-    d_index = sys.argv.index('-d')
     i_index = sys.argv.index('-i')
     
     try:
@@ -21,12 +20,8 @@ if '-d' in sys.argv:
     input = Input(input)
     PDBs = input.get_input()
 
-    if sys.argv.index('--wget') == d_index +1:
-        structure = Download(PDBs , format, compression)
-        structure.wget()
-        
-    else:
-        print("Please provide the method to download your file.\nExample: -d --wget")
-        
+    structure = Download(PDBs , format, compression)
+    structure.wget()
+                
 elif '-p' in sys.argv:
     pass
