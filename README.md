@@ -4,6 +4,7 @@ Tools to Download and Manipulate Protein Data Bank (PDB) files
 Installation Guide
 
 git clone https://github.com/SotirisTouliopoulos/pdb-handling.git
+
 cd pdb-handling
 
 
