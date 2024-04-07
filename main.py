@@ -6,18 +6,17 @@ import shutil
 
 
 def major_flag(argv_list):
-    major_flag = []
+    flags = ["-d","-p","-h"]
+    flag = []
     for argv in sys.argv:
-        if len(argv) == 2 and argv[0] == '-':
-            major_flag.append(argv)
+        if argv in flags:
+            flag.append(argv)
 
-    if len(major_flag) == 2:
-        major_flag.remove('-i')
-        #major_flag.remove('-o')
-        flag = major_flag[0]
+    if len(flag) == 1:
+        flag = flag[0]
         return flag
     
-    elif len(major_flag) > 2:
+    elif len(flag) > 1:
         print('Too many flags')
     else:
         print('Provide a flag')
@@ -42,7 +41,10 @@ def download_function(argv_list):
     structure = Download(PDBs , format, compression)
     structure.wget()
     
-    shutil.rmtree("src/__pycache__")
+    try:
+        shutil.rmtree("src/__pycache__")
+    except:
+        pass
 
 
 def parse_function():
