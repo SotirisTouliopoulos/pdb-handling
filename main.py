@@ -18,23 +18,27 @@ def major_flag(argv_list):
         return flag
     
     elif len(flag) > 1:
-        print('Too many flags')
+        print('Too many flags. Program Terminated')
+        sys.exit(1)
     else:
-        print('Provide a flag')
+        print('Flag not provided')
+        sys.exit(1)
 
 
 def download_function(argv_list):
-    
-    i_index = sys.argv.index('-i')
+
+    try:
+        i_index = sys.argv.index('-i')
+        input = sys.argv[i_index +1]
+        format = sys.argv[i_index +2]
+    except:
+        print("Input not provided")
     
     try:
         comp_index = sys.argv.index('-comp')
         compression = 'gz'
     except:
         compression = ""
-
-    input = sys.argv[i_index +1]
-    format = sys.argv[i_index +2]
             
     input = Input(input)
     PDBs = input.get_input()
@@ -42,31 +46,24 @@ def download_function(argv_list):
     structure = Download(PDBs , format, compression)
     structure.wget()
     
-    try:
-        shutil.rmtree("src/__pycache__")
-    except:
-        pass
-
 
 def parse_function(argv_list):
     
-    i_index = sys.argv.index('-i')
-    o_index = sys.argv.index('-o')
-    
-    input = sys.argv[i_index +1]
-    output = sys.argv[o_index +1]
-            
+    try:
+        i_index = sys.argv.index('-i')
+        o_index = sys.argv.index('-o')
+        input = sys.argv[i_index +1]
+        output = sys.argv[o_index +1]
+
+    except:
+        print("Input or Output path not provided")
+        sys.exit(1)
+                
     input = Input(input)
     PDBs = input.get_input()
 
     structure = Parse(PDBs)
     structure.coordinates(output)
-        
-    try:
-        shutil.rmtree("src/__pycache__")
-    except:
-        pass
-
 
 
 def call_function(flag):

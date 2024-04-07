@@ -25,4 +25,6 @@ class Input:
             PDBs.append(self.input)
             PDBs = PDBs[0]
             return PDBs
-         
+        
+        else:
+            pass
