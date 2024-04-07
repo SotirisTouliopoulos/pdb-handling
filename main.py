@@ -4,15 +4,29 @@ from input import Input
 import sys
 
 
-input = sys.argv[1]
-format = sys.argv[2]
-compression = sys.argv[3]
+if '-d' in sys.argv:
+    
+    d_index = sys.argv.index('-d')
+    i_index = sys.argv.index('-i')
+    
+    try:
+        comp_index = sys.argv.index('-comp')
+        compression = 'gz'
+    except:
+        compression = ""
 
+    input = sys.argv[i_index +1]
+    format = sys.argv[i_index +2]
+            
+    input = Input(input)
+    PDBs = input.get_input()
 
-input = Input(input)
-PDBs = input.get_input()
-
-
-structure = Download(PDBs , format, compression)
-#structure.ftp()
-structure.wget()
+    if sys.argv.index('--wget') == d_index +1:
+        structure = Download(PDBs , format, compression)
+        structure.wget()
+        
+    else:
+        print("Please provide the method to download your file.\nExample: -d --wget")
+        
+elif '-p' in sys.argv:
+    pass
