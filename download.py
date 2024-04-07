@@ -1,5 +1,4 @@
 
-import ftplib
 import sys
 import wget
          
