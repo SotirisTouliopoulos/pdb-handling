@@ -18,5 +18,5 @@ python3 main.py -i 1tii biounit -d --wget
 To download multiple PDBs provide a ".txt" file including one of them in each line:
 python3 main.py -i file.txt biounit -d --wget
 
-To download the compressed version of file add the "-comp" flag
+To download the compressed version of PDBs add the "-comp" flag
 python3 main.py -i file.txt biounit -d --wget -comp
