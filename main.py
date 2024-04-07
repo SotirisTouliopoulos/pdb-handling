@@ -1,8 +1,8 @@
 
-from download import Download
-from input import Input
+from src.download import Download
+from src.input import Input
 import sys
-
+import shutil
 
 if '-d' in sys.argv:
     
@@ -22,6 +22,8 @@ if '-d' in sys.argv:
 
     structure = Download(PDBs , format, compression)
     structure.wget()
+    
+    shutil.rmtree("src/__pycache__")
                 
 elif '-p' in sys.argv:
     pass
