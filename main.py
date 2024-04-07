@@ -51,15 +51,16 @@ def download_function(argv_list):
 def parse_function(argv_list):
     
     i_index = sys.argv.index('-i')
+    o_index = sys.argv.index('-o')
     
     input = sys.argv[i_index +1]
+    output = sys.argv[o_index +1]
             
     input = Input(input)
     PDBs = input.get_input()
-    print(PDBs)
 
     structure = Parse(PDBs)
-    structure.coordinates()
+    structure.coordinates(output)
         
     try:
         shutil.rmtree("src/__pycache__")

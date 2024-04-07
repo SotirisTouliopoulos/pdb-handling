@@ -1,6 +1,6 @@
 
 import wget
-         
+
 class Download:
     def __init__(self, PDBs, format, compression):
         self.PDBs = PDBs

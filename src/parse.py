@@ -1,9 +1,11 @@
 
+import numpy as np
+
 class Parse:
     def __init__(self, PDBs):
         self.PDB = PDBs
         
-    def coordinates(self):
+    def coordinates(self, output):
         x = []
         y = []
         z = []
@@ -19,4 +21,10 @@ class Parse:
                     coord_z = line[46:54]
                     z.append(float(coord_z))
                 
-        print(x[0], y[0], z[0])
+        arr_x = np.array(x)
+        arr_y = np.array(y)
+        arr_z = np.array(z)
+                
+        arr = np.stack((arr_x, arr_y, arr_z), axis=1)
+        output = "data/" + output        
+        np.savetxt(output, arr)

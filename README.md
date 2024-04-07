@@ -30,7 +30,7 @@ To download the compressed version of PDBs add the "-comp" flag:
 python3 main.py -i file.txt biounit -d -comp
 ```
 
-To parse an uncompressed version of a PDB file and print the coordinates:
+To parse a PDB file and save the coordinates to a ".txt" file:
 ```
-python3 main.py -i 1tii.pdb -p
+python3 main.py -i 1tii.pdb -p -o output_file.txt
 ```
