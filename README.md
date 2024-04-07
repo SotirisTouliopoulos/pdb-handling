@@ -25,7 +25,12 @@ To download multiple PDBs provide a ".txt" file including one of them in each li
 python3 main.py -i file.txt biounit -d
 ```
 
-To download the compressed version of PDBs add the "-comp" flag
+To download the compressed version of PDBs add the "-comp" flag:
 ```
 python3 main.py -i file.txt biounit -d -comp
+```
+
+To parse an uncompressed version of a PDB file and print the coordinates:
+```
+python3 main.py -i 1tii.pdb -p
 ```
