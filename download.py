@@ -18,7 +18,6 @@ class Download:
             except:
                 print("Cannot download this file")
 
-                
         if self.format == "biounit":
             try:
                 for file in self.PDBs:    
