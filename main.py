@@ -13,7 +13,7 @@ def major_flag(argv_list):
 
     if len(major_flag) == 2:
         major_flag.remove('-i')
-        major_flag.remove('-o')
+        #major_flag.remove('-o')
         flag = major_flag[0]
         return flag
     
