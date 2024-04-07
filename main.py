@@ -33,6 +33,7 @@ def download_function(argv_list):
         format = sys.argv[i_index +2]
     except:
         print("Input not provided")
+        sys.exit(1)
     
     try:
         comp_index = sys.argv.index('-comp')
