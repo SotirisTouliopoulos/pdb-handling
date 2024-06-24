@@ -1,4 +1,3 @@
-
 import wget
 import sys
 
@@ -14,6 +13,7 @@ class Download:
             sys.exit(1)
 
     def wget(self):        
+        '''Download PDB files from RCSB'''
         if self.format == "pdb":
             try:
                 for file in self.PDBs:    
@@ -32,5 +32,3 @@ class Download:
                 
         else:
             pass
-
-            
